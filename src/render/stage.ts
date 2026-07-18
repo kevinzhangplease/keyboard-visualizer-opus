@@ -12,6 +12,7 @@ import {
   Scene,
   SRGBColorSpace,
   Vector2,
+  Vector3,
   WebGLRenderer,
 } from 'three';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
@@ -21,6 +22,9 @@ import { OutputPass } from 'three/examples/jsm/postprocessing/OutputPass.js';
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
 import { toThreeColor } from '../style/color';
 import type { Style } from '../style/blend';
+
+// Camera base position (§5, pulled back so the full 15u board fits with margin).
+export const CAMERA_BASE = new Vector3(0, 17.5, 4.3);
 
 export class Stage {
   readonly renderer: WebGLRenderer;
@@ -51,12 +55,12 @@ export class Stage {
     this.scene = new Scene();
 
     this.camera = new PerspectiveCamera(32, 1, 0.1, 100);
-    this.camera.position.set(0, 12.6, 3.1);
+    this.camera.position.copy(CAMERA_BASE);
     this.camera.lookAt(0, 0, 0);
 
     // Lights tuned for the near-overhead angle (§5).
-    this.ambient = new AmbientLight(new Color(0x222233), 0.45);
-    this.directional = new DirectionalLight(0xffffff, 1.0);
+    this.ambient = new AmbientLight(new Color(0x222233), 0.35);
+    this.directional = new DirectionalLight(0xffffff, 0.7);
     this.directional.position.set(1.5, 14, 4);
     this.point = new PointLight(new Color(0x445588), 0.5, 18);
     this.point.position.set(0, 3, -6);
