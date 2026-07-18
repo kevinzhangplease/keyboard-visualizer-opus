@@ -1,0 +1,174 @@
+/* Global chrome: splash, HUD, hint text. The visuals are the show — this stays quiet. */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background: #0b0d13;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+#scene {
+  display: block;
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* ---- Splash (§9.4) ---- */
+#splash {
+  position: fixed;
+  inset: 0;
+  background: #0b0d13;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  transition: opacity 400ms ease;
+}
+
+.splash-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #8ea0c0;
+  animation: splash-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes splash-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 0.8;
+  }
+}
+
+/* ---- Invitation hint (§8.2) ---- */
+#hint {
+  position: fixed;
+  bottom: 12vh;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 13px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-family: system-ui, sans-serif;
+  color: rgba(255, 255, 255, 0.45);
+  pointer-events: none;
+  z-index: 50;
+  animation: hint-pulse 3s ease-in-out infinite;
+  transition: opacity 600ms ease;
+}
+
+@keyframes hint-pulse {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+#hint.static {
+  animation: none;
+  opacity: 0.45;
+}
+
+#hint.gone {
+  opacity: 0 !important;
+  animation: none;
+}
+
+/* ---- HUD (§8.3) ---- */
+#hud {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 60;
+  opacity: 0.55;
+  transition: opacity 500ms ease;
+  pointer-events: none;
+  font-family: system-ui, sans-serif;
+  user-select: none;
+}
+
+#hud.visible {
+  opacity: 0.55;
+  pointer-events: auto;
+}
+
+#hud.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#hud:hover {
+  opacity: 1;
+}
+
+.hud-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: auto;
+}
+
+.hud-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 0 0 transparent;
+}
+
+.hud-dot.active {
+  box-shadow: 0 0 0 1.5px var(--ring-color, #fff);
+  outline-offset: 2px;
+}
+
+.hud-sep {
+  opacity: 0.4;
+  color: #fff;
+  font-size: 11px;
+}
+
+.hud-dice {
+  display: inline-flex;
+  cursor: pointer;
+  transition: transform 200ms ease;
+  pointer-events: auto;
+}
+
+.hud-dice svg {
+  width: 18px;
+  height: 18px;
+}
+
+.hud-chip {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+  pointer-events: auto;
+  white-space: nowrap;
+}

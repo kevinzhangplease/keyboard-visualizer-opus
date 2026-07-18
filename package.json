@@ -1,0 +1,29 @@
+{
+  "name": "keyboard-visualizer",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "a seed-driven generative instrument — every keystroke is light and sound",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint \"src/**/*.ts\"",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "three": "^0.165.0"
+  },
+  "devDependencies": {
+    "@types/three": "^0.165.0",
+    "@typescript-eslint/eslint-plugin": "^7.13.0",
+    "@typescript-eslint/parser": "^7.13.0",
+    "eslint": "^8.57.0",
+    "prettier": "^3.3.0",
+    "typescript": "^5.4.5",
+    "vite": "^5.3.0",
+    "vitest": "^1.6.0"
+  }
+}

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>keyboard visualizer</title>
+    <meta
+      name="description"
+      content="a seed-driven generative instrument — every keystroke is light and sound"
+    />
+    <meta property="og:title" content="keyboard visualizer" />
+    <meta
+      property="og:description"
+      content="a seed-driven generative instrument — every keystroke is light and sound"
+    />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="./public/favicon.svg" type="image/svg+xml" />
+    <!-- No white flash: paint the splash background before any JS runs. -->
+    <style>
+      html,
+      body {
+        background: #0b0d13;
+      }
+    </style>
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <canvas id="scene"></canvas>
+    <div id="hint">press any key</div>
+    <div id="hud"></div>
+    <div id="splash"><div class="splash-dot"></div></div>
+    <script type="module" src="./src/main.ts"></script>
+  </body>
+</html>
